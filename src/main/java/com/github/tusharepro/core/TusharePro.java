@@ -38,7 +38,7 @@ public class TusharePro {
             try {
                 okhttp3.Request request = new okhttp3.Request.Builder()
                         .url(API_URL)
-                        .post(RequestBody.create(MEDIA_TYPE, requestBytes))
+                        .post(RequestBody.create(requestBytes, MEDIA_TYPE))
                         .build();
 
                 return DEFAULT_HTTP_CLIENT.newCall(request).execute().body().bytes();

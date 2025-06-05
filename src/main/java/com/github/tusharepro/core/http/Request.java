@@ -19,17 +19,17 @@ public abstract class Request<T extends BaseBean> {
     private Map<String, Object> params = new HashMap<>();
 
     @JsonIgnore public final TusharePro tusharePro;
-    @JsonIgnore public final Class beanInterfaceClass;
+    @JsonIgnore public final Class<?> beanInterfaceClass;
 
     public Request(TusharePro tusharePro) {
         token = Optional.ofNullable(tusharePro).orElse(TusharePro.getGlobal()).token;
         this.tusharePro = Optional.ofNullable(tusharePro).orElse(TusharePro.getGlobal());
 
         try {
-            final Class beanClass = TypeUtil.getActualTypeArgumentClass(getClass());
+            final Class<?> beanClass = TypeUtil.getActualTypeArgumentClass(getClass());
 
-            final List<Class> classList = new ArrayList<>();
-            final List<Class> targetClassList = new ArrayList<>();
+            final List<Class<?>> classList = new ArrayList<>();
+            final List<Class<?>> targetClassList = new ArrayList<>();
 
             TypeUtil.findClasses(BaseBean.class, beanClass, classList, targetClassList);
 

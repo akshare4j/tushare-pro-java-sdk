@@ -10,7 +10,7 @@ public final class TypeUtil {
 
     // 参考jackson的TypeReference实现
     // http://gafter.blogspot.com/2006/12/super-type-tokens.html
-    public static Class getActualTypeArgumentClass(Class<?> c) throws ClassNotFoundException {
+    public static Class<?> getActualTypeArgumentClass(Class<?> c) throws ClassNotFoundException {
         Type superClass = c.getGenericSuperclass();
         if (superClass instanceof Class<?>) { // sanity check, should never happen
             throw new IllegalArgumentException("Internal error: Request constructed without actual type information");
@@ -30,17 +30,17 @@ public final class TypeUtil {
      * @param targetClassList 目标class
      */
     public static void findClasses(
-            Class targetSupperClass,
-            Class currentClass, List<Class> classList, List<Class> targetClassList) {
+            Class<?> targetSupperClass,
+            Class<?> currentClass, List<Class<?>> classList, List<Class<?>> targetClassList) {
         classList.add(currentClass);
         // 寻找接口
-        for (Class interfaceClass : currentClass.getInterfaces()) {
+        for (Class<?> interfaceClass : currentClass.getInterfaces()) {
             if (interfaceClass.equals(targetSupperClass)) targetClassList.add(currentClass);
             findClasses(targetSupperClass, interfaceClass, classList, targetClassList);
         }
 
         // 寻找父类
-        Class superClass = currentClass.getSuperclass();
+        Class<?> superClass = currentClass.getSuperclass();
         if (superClass == null) return;
         findClasses(targetSupperClass, superClass, classList, targetClassList);
     }
