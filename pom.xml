@@ -8,7 +8,7 @@
 	    <artifactId>parent</artifactId>
 	    <version>5</version>
 	</parent>
-    <groupId>com.github.qhh6eq</groupId>
+    <groupId>com.github.leeyazhou</groupId>
     <artifactId>tushare-pro-java-sdk</artifactId>
     <version>2.0.5-RELEASE</version>
 
