@@ -18,6 +18,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,7 +30,7 @@ import com.github.tusharepro.core.util.TypeUtil;
 import com.github.tusharepro.core.util.Util;
 
 public class Client {
-
+  private static final Logger logger = LoggerFactory.getLogger(Client.class);
   private static final ObjectMapper objectMapper =
       JsonMapper.builder().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).build();
 
@@ -39,8 +41,9 @@ public class Client {
 
     try {
       final Future<Response> responseFuture = requestExecutor.submit(() -> {
+        logger.info("request: " + objectMapper.writeValueAsString(requestJson));
         String response = new String(httpFunction.apply(objectMapper.writeValueAsBytes(requestJson)));
-        System.out.println("response: " + response);
+        logger.info("response: " + response);
         return objectMapper.readValue(response, new TypeReference<Response>() {});
       });
 
@@ -69,6 +72,7 @@ public class Client {
       try {
         return f(request, beanClass);
       } catch (Exception e) {
+        logger.error("", e);
         if (timeUnit != null && timeOut != 0) {
           try {
             timeUnit.sleep(timeOut);
@@ -120,6 +124,7 @@ public class Client {
           beanList.add(bean);
         }
       } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+        logger.error("Error creating bean instance", e);
         throw new RuntimeException();
       }
 
