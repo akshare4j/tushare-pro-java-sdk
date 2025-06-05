@@ -10,16 +10,20 @@
 	</parent>
     <groupId>com.github.leeyazhou</groupId>
     <artifactId>tushare-pro-java-sdk</artifactId>
-    <version>2.0.5-RELEASE</version>
+    <version>2.0.6</version>
 
     <name>tushare-pro-java-sdk</name>
     <description>tushare-pro-java-sdk</description>
-    <url>https://github.com/qhh6eq/tushare-pro-java-sdk</url>
+    <url>https://github.com/akshare4j/tushare-pro-java-sdk</url>
 
     <developers>
         <developer>
-            <name>qhh6eq</name>
-            <email>qhh6eq@gmail.com</email>
+            <name>akshare4j</name>
+            <email>akshare4j@gmail.com</email>
+        </developer>
+        <developer>
+            <name>leeyazhou</name>
+            <email>bytesgo@163.com</email>
         </developer>
     </developers>
 
@@ -32,9 +36,9 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:https://github.com/qhh6eq/tushare-pro-java-sdk</connection>
-        <developerConnection>scm:git:git@github.com:qhh6eq/tushare-pro-java-sdk</developerConnection>
-        <url>git@github.com:qhh6eq/tushare-pro-java-sdk</url>
+        <connection>scm:git:https://github.com/akshare4j/tushare-pro-java-sdk</connection>
+        <developerConnection>scm:git:git@github.com:akshare4j/tushare-pro-java-sdk</developerConnection>
+        <url>git@github.com:akshare4j/tushare-pro-java-sdk</url>
     </scm>
 
     <properties>
